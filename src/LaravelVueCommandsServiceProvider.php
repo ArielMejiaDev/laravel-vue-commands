@@ -18,6 +18,11 @@ class LaravelVueCommandsServiceProvider extends ServiceProvider implements Defer
             // Registering package commands.
              $this->commands([InstallCommand::class]);
         }
+
+        $this->publishes([
+            __DIR__.'/../config/config.php' =>  config_path('vue-commands.php'),
+        ], 'vue-commands-config');
+
     }
 
     public function provides(): array

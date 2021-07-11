@@ -22,6 +22,15 @@ composer require arielmejiadev/laravel-vue-commands --dev
 php artisan vue-commands:install
 ```
 
+## Publish config file
+
+By default, Vue components are going to be stored in `resources/js/Components` & Inertia components would be stored in `resources/js/Pages`.
+This behavior could be customized by changing the values in the config file.
+
+```bash
+php artisan vendor:publish --tag=vue-commands-config
+```
+
 ## Usage
 
 Create a VueJS components:

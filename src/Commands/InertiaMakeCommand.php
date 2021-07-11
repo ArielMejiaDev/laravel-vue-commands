@@ -3,10 +3,19 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 class InertiaMakeCommand extends GeneratorCommand
 {
+    protected string $directory;
+
+    public function __construct(Filesystem $files)
+    {
+        parent::__construct($files);
+        $this->directory = config('vue-commands.inertia-components-directory', 'Pages');
+    }
+
     /**
      * The console command name.
      *
@@ -47,7 +56,7 @@ class InertiaMakeCommand extends GeneratorCommand
     protected function alreadyExists($rawName): bool
     {
         $name = Str::of($rawName)->remove('App\\')->replace('\\', '/');
-        $path = "{$this->laravel['path']}/../resources/js/Pages/{$name}.vue";
+        $path = "{$this->laravel['path']}/../resources/js/{$this->directory}/{$name}.vue";
         return file_exists($path);
     }
 
@@ -74,6 +83,6 @@ class InertiaMakeCommand extends GeneratorCommand
     protected function getPath($name): string
     {
         $name = Str::of($name)->remove('App\\')->replace('\\', '/');
-        return "{$this->laravel['path']}/../resources/js/Pages/{$name}.vue";
+        return "{$this->laravel['path']}/../resources/js/{$this->directory}/{$name}.vue";
     }
 }
