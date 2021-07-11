@@ -1,0 +1,21 @@
+<template>
+    <!-- Your {{ component }} component's template -->
+</template>
+
+<script>
+export default {
+    name: '{{ component }}',
+
+    components: {},
+
+    props: {},
+
+    data() {
+        return {
+            //
+        }
+    },
+
+    methods: {}
+}
+</script>
